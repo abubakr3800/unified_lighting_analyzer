@@ -1,0 +1,88 @@
+FAST DIALUX ANALYSIS REPORT
+========================================
+
+PROJECT INFORMATION:
+Project Name: Not specified
+Project Company: Not specified
+Luminaire Manufacturer: Not specified
+Driver Circuit Company: Not specified
+Total Area: 4089.0 m²
+Total Rooms: 10
+
+ROOM ANALYSIS WITH COMPLIANCE:
+
+Room: Room 1 (office)
+  Area: 954.0 m²
+  Average Illuminance: 673 lux
+  Uniformity: 0.41
+  Compliance Status:
+    ✅ illuminance: 673.0 lux (required: 500 lux)
+    ✅ illuminance: 673.0 lux (required: 500 lux)
+    ❌ uniformity: 0.41 ratio (required: 0.6 ratio)
+    ❌ uniformity: 0.41 ratio (required: 0.7 ratio)
+
+Room: Room 2 (office)
+  Area: 949.0 m²
+  Average Illuminance: 673 lux
+  Compliance Status:
+    ✅ illuminance: 673.0 lux (required: 500 lux)
+    ✅ illuminance: 673.0 lux (required: 500 lux)
+
+Room: Room 3 (office)
+  Area: 721.0 m²
+  Average Illuminance: 277 lux
+  Compliance Status:
+    ❌ illuminance: 277.0 lux (required: 500 lux)
+    ❌ illuminance: 277.0 lux (required: 500 lux)
+
+Room: Room 4 (office)
+  Area: 673.0 m²
+  Average Illuminance: 949 lux
+  Compliance Status:
+    ✅ illuminance: 949.0 lux (required: 500 lux)
+    ✅ illuminance: 949.0 lux (required: 500 lux)
+
+Room: Room 5 (office)
+  Area: 356.0 m²
+  Average Illuminance: 721 lux
+  Compliance Status:
+    ✅ illuminance: 721.0 lux (required: 500 lux)
+    ✅ illuminance: 721.0 lux (required: 500 lux)
+
+Room: Room 6 (office)
+  Area: 277.0 m²
+  Average Illuminance: 356 lux
+  Compliance Status:
+    ❌ illuminance: 356.0 lux (required: 500 lux)
+    ❌ illuminance: 356.0 lux (required: 500 lux)
+
+Room: Room 7 (office)
+  Area: 49.0 m²
+  Average Illuminance: 954 lux
+  Compliance Status:
+    ✅ illuminance: 954.0 lux (required: 500 lux)
+    ✅ illuminance: 954.0 lux (required: 500 lux)
+
+Room: Room 8 (office)
+  Area: 41.0 m²
+  Average Illuminance: 673 lux
+  Compliance Status:
+    ✅ illuminance: 673.0 lux (required: 500 lux)
+    ✅ illuminance: 673.0 lux (required: 500 lux)
+
+Room: Room 9 (office)
+  Area: 35.0 m²
+  Average Illuminance: 673 lux
+  Compliance Status:
+    ✅ illuminance: 673.0 lux (required: 500 lux)
+    ✅ illuminance: 673.0 lux (required: 500 lux)
+
+Room: Room 10 (office)
+  Area: 34.0 m²
+  Average Illuminance: 673 lux
+  Compliance Status:
+    ✅ illuminance: 673.0 lux (required: 500 lux)
+    ✅ illuminance: 673.0 lux (required: 500 lux)
+
+Overall Compliance Rate: 72.7%
+Data Quality Score: 80.0%

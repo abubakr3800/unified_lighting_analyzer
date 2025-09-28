@@ -1,0 +1,386 @@
+{
+  "project_name": null,
+  "project_company": null,
+  "luminaire_manufacturer": null,
+  "driver_circuit_company": null,
+  "rooms": [
+    {
+      "room_name": "Room 1",
+      "room_type": "office",
+      "area": 954.0,
+      "illuminance_avg": 673.0,
+      "uniformity": 0.41,
+      "ugr": null,
+      "power_density": null,
+      "compliance_results": [
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 673.0,
+          "unit": "lux",
+          "is_compliant": true,
+          "compliance_percentage": 134.60000000000002,
+          "deviation": 173.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "EN_12464_1",
+          "notes": ""
+        },
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 673.0,
+          "unit": "lux",
+          "is_compliant": true,
+          "compliance_percentage": 134.60000000000002,
+          "deviation": 173.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "BREEAM",
+          "notes": ""
+        },
+        {
+          "parameter": "uniformity",
+          "required_value": 0.6,
+          "actual_value": 0.41,
+          "unit": "ratio",
+          "is_compliant": false,
+          "compliance_percentage": 68.33333333333333,
+          "deviation": 0.19,
+          "room_type": "RoomType.OFFICE",
+          "standard": "EN_12464_1",
+          "notes": ""
+        },
+        {
+          "parameter": "uniformity",
+          "required_value": 0.7,
+          "actual_value": 0.41,
+          "unit": "ratio",
+          "is_compliant": false,
+          "compliance_percentage": 58.57142857142858,
+          "deviation": 0.29,
+          "room_type": "RoomType.OFFICE",
+          "standard": "BREEAM",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "room_name": "Room 2",
+      "room_type": "office",
+      "area": 949.0,
+      "illuminance_avg": 673.0,
+      "uniformity": null,
+      "ugr": null,
+      "power_density": null,
+      "compliance_results": [
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 673.0,
+          "unit": "lux",
+          "is_compliant": true,
+          "compliance_percentage": 134.60000000000002,
+          "deviation": 173.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "EN_12464_1",
+          "notes": ""
+        },
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 673.0,
+          "unit": "lux",
+          "is_compliant": true,
+          "compliance_percentage": 134.60000000000002,
+          "deviation": 173.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "BREEAM",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "room_name": "Room 3",
+      "room_type": "office",
+      "area": 721.0,
+      "illuminance_avg": 277.0,
+      "uniformity": null,
+      "ugr": null,
+      "power_density": null,
+      "compliance_results": [
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 277.0,
+          "unit": "lux",
+          "is_compliant": false,
+          "compliance_percentage": 55.400000000000006,
+          "deviation": 223.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "EN_12464_1",
+          "notes": ""
+        },
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 277.0,
+          "unit": "lux",
+          "is_compliant": false,
+          "compliance_percentage": 55.400000000000006,
+          "deviation": 223.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "BREEAM",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "room_name": "Room 4",
+      "room_type": "office",
+      "area": 673.0,
+      "illuminance_avg": 949.0,
+      "uniformity": null,
+      "ugr": null,
+      "power_density": null,
+      "compliance_results": [
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 949.0,
+          "unit": "lux",
+          "is_compliant": true,
+          "compliance_percentage": 189.79999999999998,
+          "deviation": 449.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "EN_12464_1",
+          "notes": ""
+        },
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 949.0,
+          "unit": "lux",
+          "is_compliant": true,
+          "compliance_percentage": 189.79999999999998,
+          "deviation": 449.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "BREEAM",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "room_name": "Room 5",
+      "room_type": "office",
+      "area": 356.0,
+      "illuminance_avg": 721.0,
+      "uniformity": null,
+      "ugr": null,
+      "power_density": null,
+      "compliance_results": [
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 721.0,
+          "unit": "lux",
+          "is_compliant": true,
+          "compliance_percentage": 144.2,
+          "deviation": 221.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "EN_12464_1",
+          "notes": ""
+        },
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 721.0,
+          "unit": "lux",
+          "is_compliant": true,
+          "compliance_percentage": 144.2,
+          "deviation": 221.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "BREEAM",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "room_name": "Room 6",
+      "room_type": "office",
+      "area": 277.0,
+      "illuminance_avg": 356.0,
+      "uniformity": null,
+      "ugr": null,
+      "power_density": null,
+      "compliance_results": [
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 356.0,
+          "unit": "lux",
+          "is_compliant": false,
+          "compliance_percentage": 71.2,
+          "deviation": 144.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "EN_12464_1",
+          "notes": ""
+        },
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 356.0,
+          "unit": "lux",
+          "is_compliant": false,
+          "compliance_percentage": 71.2,
+          "deviation": 144.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "BREEAM",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "room_name": "Room 7",
+      "room_type": "office",
+      "area": 49.0,
+      "illuminance_avg": 954.0,
+      "uniformity": null,
+      "ugr": null,
+      "power_density": null,
+      "compliance_results": [
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 954.0,
+          "unit": "lux",
+          "is_compliant": true,
+          "compliance_percentage": 190.79999999999998,
+          "deviation": 454.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "EN_12464_1",
+          "notes": ""
+        },
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 954.0,
+          "unit": "lux",
+          "is_compliant": true,
+          "compliance_percentage": 190.79999999999998,
+          "deviation": 454.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "BREEAM",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "room_name": "Room 8",
+      "room_type": "office",
+      "area": 41.0,
+      "illuminance_avg": 673.0,
+      "uniformity": null,
+      "ugr": null,
+      "power_density": null,
+      "compliance_results": [
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 673.0,
+          "unit": "lux",
+          "is_compliant": true,
+          "compliance_percentage": 134.60000000000002,
+          "deviation": 173.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "EN_12464_1",
+          "notes": ""
+        },
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 673.0,
+          "unit": "lux",
+          "is_compliant": true,
+          "compliance_percentage": 134.60000000000002,
+          "deviation": 173.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "BREEAM",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "room_name": "Room 9",
+      "room_type": "office",
+      "area": 35.0,
+      "illuminance_avg": 673.0,
+      "uniformity": null,
+      "ugr": null,
+      "power_density": null,
+      "compliance_results": [
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 673.0,
+          "unit": "lux",
+          "is_compliant": true,
+          "compliance_percentage": 134.60000000000002,
+          "deviation": 173.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "EN_12464_1",
+          "notes": ""
+        },
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 673.0,
+          "unit": "lux",
+          "is_compliant": true,
+          "compliance_percentage": 134.60000000000002,
+          "deviation": 173.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "BREEAM",
+          "notes": ""
+        }
+      ]
+    },
+    {
+      "room_name": "Room 10",
+      "room_type": "office",
+      "area": 34.0,
+      "illuminance_avg": 673.0,
+      "uniformity": null,
+      "ugr": null,
+      "power_density": null,
+      "compliance_results": [
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 673.0,
+          "unit": "lux",
+          "is_compliant": true,
+          "compliance_percentage": 134.60000000000002,
+          "deviation": 173.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "EN_12464_1",
+          "notes": ""
+        },
+        {
+          "parameter": "illuminance",
+          "required_value": 500,
+          "actual_value": 673.0,
+          "unit": "lux",
+          "is_compliant": true,
+          "compliance_percentage": 134.60000000000002,
+          "deviation": 173.0,
+          "room_type": "RoomType.OFFICE",
+          "standard": "BREEAM",
+          "notes": ""
+        }
+      ]
+    }
+  ],
+  "total_rooms": 10,
+  "total_area": 4089.0,
+  "overall_compliance_rate": 0.7272727272727273,
+  "data_quality_score": 0.8
+}

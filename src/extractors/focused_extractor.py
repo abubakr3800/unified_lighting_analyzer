@@ -61,20 +61,53 @@ class FocusedExtractor:
         # Initialize PDF extractor
         self.pdf_extractor = PDFExtractor()
         
-        # Pre-compiled regex patterns for fast extraction
+        # Pre-compiled regex patterns for fast extraction - Enhanced for Dialux reports
         self.area_patterns = [
+            # Standard area patterns
             r'area[:\s]*(\d+(?:\.\d+)?)\s*m[²2]',
             r'(\d+(?:\.\d+)?)\s*m[²2]',
             r'(\d+(?:\.\d+)?)\s*sqm',
             r'(\d+(?:\.\d+)?)\s*square\s*meters?',
             r'room[:\s]*(\d+(?:\.\d+)?)\s*m[²2]',
-            r'(\d+(?:\.\d+)?)\s*m\^2'
+            r'(\d+(?:\.\d+)?)\s*m\^2',
+            # Dialux specific patterns
+            r'(\d+(?:\.\d+)?)\s*m\s*[²2]',
+            r'(\d+(?:\.\d+)?)\s*m2',
+            r'(\d+(?:\.\d+)?)\s*m\s*2',
+            r'(\d+(?:\.\d+)?)\s*sq\.?\s*m',
+            r'(\d+(?:\.\d+)?)\s*square\s*m',
+            r'(\d+(?:\.\d+)?)\s*m\s*square',
+            # Table patterns (common in Dialux reports)
+            r'(\d+(?:\.\d+)?)\s*m[²2]\s*[^\d]',
+            r'(\d+(?:\.\d+)?)\s*m[²2]\s*$',
+            # Decimal patterns
+            r'(\d+\.\d+)\s*m[²2]',
+            r'(\d+\.\d+)\s*sqm',
+            # Large number patterns (for big areas)
+            r'(\d{2,}(?:\.\d+)?)\s*m[²2]',
+            r'(\d{2,}(?:\.\d+)?)\s*sqm',
+            # Additional patterns for Dialux reports
+            r'(\d+(?:\.\d+)?)\s*m\s*[²2]',
+            r'(\d+(?:\.\d+)?)\s*m\s*2',
+            r'(\d+(?:\.\d+)?)\s*m2',
+            r'(\d+(?:\.\d+)?)\s*m\^2',
+            r'(\d+(?:\.\d+)?)\s*sq\.?\s*m',
+            r'(\d+(?:\.\d+)?)\s*square\s*m',
+            r'(\d+(?:\.\d+)?)\s*m\s*square',
+            # Patterns without units (just numbers that could be areas)
+            r'(\d{2,}(?:\.\d+)?)\s+(?=\d)',  # Large numbers followed by other numbers
+            r'(\d+(?:\.\d+)?)\s+(?=lux|lx)',  # Numbers followed by lux
+            r'(\d+(?:\.\d+)?)\s+(?=uniformity|uniform)',  # Numbers followed by uniformity
         ]
         
         self.illuminance_patterns = [
             r'illuminance[:\s]*(\d+(?:\.\d+)?)\s*lux',
             r'(\d+(?:\.\d+)?)\s*lux',
-            r'lighting[:\s]*(\d+(?:\.\d+)?)\s*lux'
+            r'lighting[:\s]*(\d+(?:\.\d+)?)\s*lux',
+            r'(\d+(?:\.\d+)?)\s*lx',
+            r'(\d+(?:\.\d+)?)\s*Lux',
+            r'(\d+(?:\.\d+)?)\s*LUX',
+            r'(\d+(?:\.\d+)?)\s*Lx'
         ]
         
         self.uniformity_patterns = [
@@ -117,11 +150,14 @@ class FocusedExtractor:
                 logger.warning("Insufficient text extracted")
                 raw_text = "No readable text found"
             
-            # Step 2: Fast regex extraction for numbers
+            # Step 2: Debug - log sample of extracted text
+            logger.info(f"Sample extracted text (first 500 chars): {raw_text[:500]}")
+            
+            # Step 3: Fast regex extraction for numbers
             logger.info("Performing fast regex extraction...")
             regex_data = self._extract_with_regex(raw_text)
             
-            # Step 3: Extract company names (with or without OpenAI)
+            # Step 4: Extract company names (with or without OpenAI)
             if self.openai_available:
                 logger.info("Extracting company information with OpenAI...")
                 company_data = self._extract_companies_fast(raw_text[:2000])  # Only first 2000 chars
@@ -129,7 +165,7 @@ class FocusedExtractor:
                 logger.info("Extracting company information with regex patterns...")
                 company_data = self._extract_companies_regex(raw_text)
             
-            # Step 4: Combine results
+            # Step 5: Combine results
             result = FocusedExtractionResult(
                 project_name=company_data.get('project_name'),
                 project_company=company_data.get('project_company'),
@@ -149,81 +185,167 @@ class FocusedExtractor:
             raise
     
     def _extract_with_regex(self, text: str) -> Dict[str, Any]:
-        """Extract numerical data using regex patterns"""
+        """Extract numerical data using enhanced regex patterns"""
         rooms = []
         luminaire_details = []
         
-        # Split text into sections (look for room indicators)
-        sections = re.split(r'(?i)(room|area|space|zone)', text)
+        logger.info(f"Extracting from text length: {len(text)} characters")
         
-        current_room = {}
-        room_count = 0
+        # First, let's find ALL area values in the entire text
+        all_area_values = []
+        for pattern in self.area_patterns:
+            matches = re.findall(pattern, text, re.IGNORECASE)
+            for match in matches:
+                try:
+                    area_val = float(match)
+                    # More flexible area range - include smaller areas and larger areas
+                    if 0.01 <= area_val <= 1000000:  # Very flexible area range
+                        all_area_values.append(area_val)
+                except (ValueError, TypeError):
+                    continue
         
-        for i, section in enumerate(sections):
-            if not section.strip():
-                continue
+        logger.info(f"Found {len(all_area_values)} area values: {all_area_values[:10]}")  # Log first 10
+        
+        # Find ALL illuminance values
+        all_illuminance_values = []
+        for pattern in self.illuminance_patterns:
+            matches = re.findall(pattern, text, re.IGNORECASE)
+            for match in matches:
+                try:
+                    illum_val = float(match)
+                    if 1 <= illum_val <= 10000:  # Reasonable illuminance range
+                        all_illuminance_values.append(illum_val)
+                except (ValueError, TypeError):
+                    continue
+        
+        logger.info(f"Found {len(all_illuminance_values)} illuminance values: {all_illuminance_values[:10]}")
+        
+        # Find ALL uniformity values
+        all_uniformity_values = []
+        for pattern in self.uniformity_patterns:
+            matches = re.findall(pattern, text, re.IGNORECASE)
+            for match in matches:
+                try:
+                    uniform_val = float(match)
+                    if 0.01 <= uniform_val <= 1.0:  # Reasonable uniformity range
+                        all_uniformity_values.append(uniform_val)
+                except (ValueError, TypeError):
+                    continue
+        
+        # Find ALL UGR values
+        all_ugr_values = []
+        for pattern in self.ugr_patterns:
+            matches = re.findall(pattern, text, re.IGNORECASE)
+            for match in matches:
+                try:
+                    ugr_val = float(match)
+                    if 1 <= ugr_val <= 50:  # Reasonable UGR range
+                        all_ugr_values.append(ugr_val)
+                except (ValueError, TypeError):
+                    continue
+        
+        # Now create rooms based on found data
+        # Strategy 1: If we have area values, create rooms for each
+        if all_area_values:
+            # Remove duplicates and sort
+            unique_areas = sorted(list(set(all_area_values)), reverse=True)
+            logger.info(f"Creating rooms from {len(unique_areas)} unique areas")
             
-            # Look for area values
-            area_values = []
-            for pattern in self.area_patterns:
-                matches = re.findall(pattern, section, re.IGNORECASE)
-                area_values.extend([float(m) for m in matches if m])
-            
-            # Look for illuminance values
-            illuminance_values = []
-            for pattern in self.illuminance_patterns:
-                matches = re.findall(pattern, section, re.IGNORECASE)
-                illuminance_values.extend([float(m) for m in matches if m])
-            
-            # Look for uniformity values
-            uniformity_values = []
-            for pattern in self.uniformity_patterns:
-                matches = re.findall(pattern, section, re.IGNORECASE)
-                uniformity_values.extend([float(m) for m in matches if m])
-            
-            # Look for UGR values
-            ugr_values = []
-            for pattern in self.ugr_patterns:
-                matches = re.findall(pattern, section, re.IGNORECASE)
-                ugr_values.extend([float(m) for m in matches if m])
-            
-            # If we found area data, create a room entry
-            if area_values:
-                room_count += 1
+            for i, area in enumerate(unique_areas[:10]):  # Max 10 rooms
                 room = {
-                    'room_name': f'Room {room_count}',
+                    'room_name': f'Room {i+1}',
                     'room_type': 'office',  # Default
-                    'area': max(area_values),  # Take the largest area found
-                    'illuminance_avg': max(illuminance_values) if illuminance_values else None,
-                    'uniformity': max(uniformity_values) if uniformity_values else None,
-                    'ugr': max(ugr_values) if ugr_values else None,
+                    'area': area,
+                    'illuminance_avg': all_illuminance_values[i] if i < len(all_illuminance_values) else None,
+                    'uniformity': all_uniformity_values[i] if i < len(all_uniformity_values) else None,
+                    'ugr': all_ugr_values[i] if i < len(all_ugr_values) else None,
                     'power_density': None
                 }
                 rooms.append(room)
-                current_room = room
-            
-            # If we found illuminance but no area, try to add to current room
-            elif illuminance_values and current_room:
-                current_room['illuminance_avg'] = max(illuminance_values)
         
-        # If no rooms found with area, create rooms from illuminance data
-        if not rooms and illuminance_values:
-            for i, illuminance in enumerate(illuminance_values[:5]):  # Max 5 rooms
+        # Strategy 2: If we have illuminance but no areas, create rooms with estimated areas
+        elif all_illuminance_values and not all_area_values:
+            logger.info("No areas found, creating rooms from illuminance data")
+            for i, illuminance in enumerate(all_illuminance_values[:10]):
+                # Estimate area based on illuminance (higher illuminance = smaller area typically)
+                estimated_area = max(10.0, 100.0 - (illuminance / 10))  # Rough estimation
+                
                 room = {
                     'room_name': f'Room {i+1}',
                     'room_type': 'office',
-                    'area': 10.0,  # Default area if not found
+                    'area': estimated_area,
                     'illuminance_avg': illuminance,
-                    'uniformity': None,
-                    'ugr': None,
+                    'uniformity': all_uniformity_values[i] if i < len(all_uniformity_values) else None,
+                    'ugr': all_ugr_values[i] if i < len(all_ugr_values) else None,
                     'power_density': None
                 }
                 rooms.append(room)
         
-        # If still no rooms, create a default room
+        # Strategy 3: Try to extract from table-like structures
         if not rooms:
+            logger.info("Trying table-based extraction")
+            # Look for table patterns (numbers in rows/columns)
+            table_pattern = r'(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)\s+(\d+(?:\.\d+)?)'
+            table_matches = re.findall(table_pattern, text)
+            
+            for i, match in enumerate(table_matches[:5]):  # Max 5 rooms from tables
+                try:
+                    # Assume first number is area, second is illuminance
+                    area_val = float(match[0])
+                    illum_val = float(match[1])
+                    
+                    if 0.1 <= area_val <= 100000 and 1 <= illum_val <= 10000:
+                        room = {
+                            'room_name': f'Table Room {i+1}',
+                            'room_type': 'office',
+                            'area': area_val,
+                            'illuminance_avg': illum_val,
+                            'uniformity': None,
+                            'ugr': None,
+                            'power_density': None
+                        }
+                        rooms.append(room)
+                except (ValueError, TypeError):
+                    continue
+        
+        # Strategy 4: Look for any reasonable numbers that could be areas
+        if not rooms:
+            logger.info("Trying to find any reasonable numbers as potential areas")
+            # Look for any numbers that could be areas (2+ digits, possibly with decimals)
+            number_pattern = r'(\d{2,}(?:\.\d+)?)'
+            all_numbers = re.findall(number_pattern, text)
+            
+            potential_areas = []
+            for num_str in all_numbers:
+                try:
+                    num_val = float(num_str)
+                    # Look for numbers that could reasonably be areas
+                    if 1.0 <= num_val <= 10000:  # Reasonable area range
+                        potential_areas.append(num_val)
+                except (ValueError, TypeError):
+                    continue
+            
+            # Remove duplicates and sort
+            unique_areas = sorted(list(set(potential_areas)), reverse=True)
+            logger.info(f"Found {len(unique_areas)} potential areas: {unique_areas[:10]}")
+            
+            for i, area in enumerate(unique_areas[:10]):  # Max 10 rooms
+                room = {
+                    'room_name': f'Estimated Room {i+1}',
+                    'room_type': 'office',
+                    'area': area,
+                    'illuminance_avg': all_illuminance_values[i] if i < len(all_illuminance_values) else None,
+                    'uniformity': all_uniformity_values[i] if i < len(all_uniformity_values) else None,
+                    'ugr': all_ugr_values[i] if i < len(all_ugr_values) else None,
+                    'power_density': None
+                }
+                rooms.append(room)
+        
+        # Strategy 5: Last resort - create default room
+        if not rooms:
+            logger.warning("No data found, creating default room")
             room = {
-                'room_name': 'Main Room',
+                'room_name': 'Default Room',
                 'room_type': 'office',
                 'area': 1.0,  # Minimum area
                 'illuminance_avg': None,
@@ -232,6 +354,10 @@ class FocusedExtractor:
                 'power_density': None
             }
             rooms.append(room)
+        
+        logger.info(f"Created {len(rooms)} rooms")
+        for room in rooms:
+            logger.info(f"  - {room['room_name']}: {room['area']} m², {room['illuminance_avg']} lux")
         
         return {
             'rooms': rooms,

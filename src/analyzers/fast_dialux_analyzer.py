@@ -202,7 +202,9 @@ class FastDialuxAnalyzer:
                             required_value=required,
                             unit='lux',
                             is_compliant=is_compliant,
-                            deviation=room.illuminance_avg - required if is_compliant else required - room.illuminance_avg
+                            compliance_percentage=(room.illuminance_avg / required) * 100 if required > 0 else 0,
+                            deviation=room.illuminance_avg - required if is_compliant else required - room.illuminance_avg,
+                            room_type=room_type
                         ))
             
             # Check uniformity compliance
@@ -219,7 +221,9 @@ class FastDialuxAnalyzer:
                             required_value=required,
                             unit='ratio',
                             is_compliant=is_compliant,
-                            deviation=room.uniformity - required if is_compliant else required - room.uniformity
+                            compliance_percentage=(room.uniformity / required) * 100 if required > 0 else 0,
+                            deviation=room.uniformity - required if is_compliant else required - room.uniformity,
+                            room_type=room_type
                         ))
             
             # Check UGR compliance
@@ -236,7 +240,9 @@ class FastDialuxAnalyzer:
                             required_value=required,
                             unit='UGR',
                             is_compliant=is_compliant,
-                            deviation=room.ugr - required if not is_compliant else 0
+                            compliance_percentage=(required / room.ugr) * 100 if room.ugr > 0 else 0,
+                            deviation=room.ugr - required if not is_compliant else 0,
+                            room_type=room_type
                         ))
             
             room.compliance_results = compliance_results
