@@ -1,0 +1,22 @@
+FAST DIALUX ANALYSIS REPORT
+========================================
+
+PROJECT INFORMATION:
+Project Name: Manufacturer 
+Philips 
+ 
+P
+Project Company: Company 
+mostafaattalla
+Luminaire Manufacturer: Philips
+Driver Circuit Company: Not specified
+Total Area: 1.0 m²
+Total Rooms: 1
+
+ROOM ANALYSIS WITH COMPLIANCE:
+
+Room: Main Room (office)
+  Area: 1.0 m²
+
+Overall Compliance Rate: 0.0%
+Data Quality Score: 80.0%

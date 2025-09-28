@@ -1,0 +1,22 @@
+{
+  "project_name": null,
+  "project_company": null,
+  "luminaire_manufacturer": null,
+  "driver_circuit_company": null,
+  "rooms": [
+    {
+      "room_name": "Main Room",
+      "room_type": "office",
+      "area": 1.0,
+      "illuminance_avg": null,
+      "uniformity": null,
+      "ugr": null,
+      "power_density": null,
+      "compliance_results": []
+    }
+  ],
+  "total_rooms": 1,
+  "total_area": 1.0,
+  "overall_compliance_rate": 0.0,
+  "data_quality_score": 0.8
+}

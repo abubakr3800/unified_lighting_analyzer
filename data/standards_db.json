@@ -1,0 +1,86 @@
+{
+  "EN_12464_1": {
+    "name": "EN 12464-1:2021 - Light and lighting - Lighting of work places",
+    "version": "2021",
+    "requirements": {
+      "office": {
+        "illuminance_min": 500,
+        "illuminance_unit": "lux",
+        "uniformity_min": 0.6,
+        "ugr_max": 19,
+        "power_density_max": 12,
+        "power_density_unit": "W/m²",
+        "color_temperature_min": 3000,
+        "color_temperature_max": 6500,
+        "color_temperature_unit": "K",
+        "cri_min": 80
+      },
+      "meeting_room": {
+        "illuminance_min": 500,
+        "illuminance_unit": "lux",
+        "uniformity_min": 0.6,
+        "ugr_max": 19,
+        "power_density_max": 12,
+        "power_density_unit": "W/m²",
+        "color_temperature_min": 3000,
+        "color_temperature_max": 6500,
+        "color_temperature_unit": "K",
+        "cri_min": 80
+      },
+      "corridor": {
+        "illuminance_min": 100,
+        "illuminance_unit": "lux",
+        "uniformity_min": 0.4,
+        "ugr_max": 22,
+        "power_density_max": 5,
+        "power_density_unit": "W/m²",
+        "color_temperature_min": 3000,
+        "color_temperature_max": 6500,
+        "color_temperature_unit": "K",
+        "cri_min": 80
+      },
+      "storage": {
+        "illuminance_min": 200,
+        "illuminance_unit": "lux",
+        "uniformity_min": 0.4,
+        "ugr_max": 25,
+        "power_density_max": 8,
+        "power_density_unit": "W/m²",
+        "color_temperature_min": 3000,
+        "color_temperature_max": 6500,
+        "color_temperature_unit": "K",
+        "cri_min": 80
+      },
+      "industrial": {
+        "illuminance_min": 300,
+        "illuminance_unit": "lux",
+        "uniformity_min": 0.4,
+        "ugr_max": 25,
+        "power_density_max": 15,
+        "power_density_unit": "W/m²",
+        "color_temperature_min": 3000,
+        "color_temperature_max": 6500,
+        "color_temperature_unit": "K",
+        "cri_min": 80
+      }
+    }
+  },
+  "BREEAM": {
+    "name": "BREEAM - Building Research Establishment Environmental Assessment Method",
+    "version": "2018",
+    "requirements": {
+      "office": {
+        "illuminance_min": 500,
+        "illuminance_unit": "lux",
+        "uniformity_min": 0.7,
+        "ugr_max": 19,
+        "power_density_max": 10,
+        "power_density_unit": "W/m²",
+        "color_temperature_min": 3000,
+        "color_temperature_max": 6500,
+        "color_temperature_unit": "K",
+        "cri_min": 80
+      }
+    }
+  }
+}

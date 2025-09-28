@@ -1,0 +1,22 @@
+{
+  "project_name": "Manufacturer \nPhilips \n \nP",
+  "project_company": "Company \nmostafaattalla",
+  "luminaire_manufacturer": "Philips",
+  "driver_circuit_company": null,
+  "rooms": [
+    {
+      "room_name": "Main Room",
+      "room_type": "office",
+      "area": 1.0,
+      "illuminance_avg": null,
+      "uniformity": null,
+      "ugr": null,
+      "power_density": null,
+      "compliance_results": []
+    }
+  ],
+  "total_rooms": 1,
+  "total_area": 1.0,
+  "overall_compliance_rate": 0.0,
+  "data_quality_score": 0.8
+}

@@ -1,0 +1,8 @@
+﻿room_name,room_type,area,illuminance_avg,uniformity,ugr,power_density,data_completeness,confidence_score
+1,retail,0.0,,,,,0.125,0.09090909090909091
+1,retail,0.0,,,,,0.125,0.18181818181818182
+1,retail,0.0,,,,,0.125,0.18181818181818182
+1 (Light scene 1),industrial,0.0,673.0,,,,0.125,0.18181818181818182
+Utilisation profile: Health care premises - Operating areas,office,0.0,,,,,0.125,0.09090909090909091
+1 (Light scene 1),retail,0.0,721.0,,,,0.125,0.18181818181818182
+Utilisation profile: Health care premises - Operating areas,office,0.0,,,,,0.0,0.0
