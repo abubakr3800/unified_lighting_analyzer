@@ -25,7 +25,7 @@ Security vulnerabilities should be reported privately to prevent exploitation.
 
 ### 2. Email us directly
 
-Send an email to: **security@shortcircuitcompany.com**
+Send an email to: **Scc@shortcircuitcompany.com**
 
 Include the following information:
 - **Description** of the vulnerability
@@ -268,7 +268,7 @@ log_security_event("API_KEY_USAGE", f"API key used for analysis: {user_id}")
 
 ### Contact Information
 
-- **Security Email**: security@shortcircuitcompany.com
+- **Security Email**: Scc@shortcircuitcompany.com
 - **General Support**: Scc@shortcircuitcompany.com
 - **Emergency Contact**: Available 24/7 for critical security issues
 
@@ -309,6 +309,6 @@ We regularly update the application to address security issues:
 
 ---
 
-**Security is a shared responsibility. If you have any security concerns or questions, please contact us at security@shortcircuitcompany.com.**
+**Security is a shared responsibility. If you have any security concerns or questions, please contact us at Scc@shortcircuitcompany.com**
 
 **For general support, contact [Scc@shortcircuitcompany.com](mailto:Scc@shortcircuitcompany.com).**
