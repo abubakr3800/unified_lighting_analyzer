@@ -1,0 +1,176 @@
+================================================================================
+                    UNIFIED LIGHTING ANALYZER - BRIEF SUMMARY
+================================================================================
+
+Project: Unified Lighting Analyzer
+Version: 1.0.0
+Developer: Short Circuit Company
+Contact: Scc@shortcircuitcompany.com
+License: MIT License
+
+================================================================================
+                                OVERVIEW
+================================================================================
+
+AI-powered system for analyzing lighting documents, standards compliance, and 
+Dialux reports. Combines multiple extraction methods with intelligent processing 
+for accurate lighting system evaluation.
+
+================================================================================
+                                KEY LIBRARIES
+================================================================================
+
+PDF Processing: pdfplumber, PyMuPDF, pdfminer.six
+Table Extraction: camelot-py, tabula-py, pandas
+OCR: pytesseract, Pillow, opencv-python
+Data Processing: numpy, scipy, scikit-learn
+Web Interface: streamlit, plotly, fastapi
+AI Integration: openai, transformers, torch
+Database: chromadb, faiss-cpu
+Development: pytest, black, flake8, mypy
+
+================================================================================
+                                LIGHTING STANDARDS
+================================================================================
+
+WHAT ARE STANDARDS?
+Guidelines defining minimum lighting quality, energy efficiency, and visual 
+comfort for different spaces and activities.
+
+SUPPORTED STANDARDS:
+- EN 12464-1:2021 (European workplace lighting standard)
+- BREEAM (UK environmental assessment method)
+
+HOW TO USE:
+- Automatic room type mapping to standards
+- Parameter-by-parameter compliance checking
+- JSON-based standards database (easily extensible)
+
+================================================================================
+                                FUNCTIONALITY
+================================================================================
+
+PDF PROCESSING:
+- Multi-method extraction with fallback strategies
+- Advanced table extraction with quality analysis
+- OCR capabilities for image-based content
+
+DIALUX ANALYSIS:
+- Three methods: Fast (2-5s), Enhanced (10-30s), Standard (30-60s)
+- Room-by-room analysis with detailed metrics
+- Company information extraction
+
+STANDARDS COMPLIANCE:
+- EN 12464-1 and BREEAM compliance checking
+- Parameter comparison (illuminance, uniformity, UGR, power density)
+- Compliance rate calculation with deviation analysis
+
+REPORTING:
+- Comprehensive recommendations with priority levels
+- Critical issues identification
+- Multiple export formats (JSON, CSV, Excel, PDF)
+- Interactive web interface
+
+================================================================================
+                                WHAT IT CAN DO
+================================================================================
+
+- Extract lighting parameters from PDFs
+- Analyze room-by-room lighting data
+- Check compliance against multiple standards
+- Generate detailed recommendations
+- Export results in multiple formats
+- Provide interactive web interface
+- Support batch processing
+- Company information extraction
+- Area calculation with pattern recognition
+
+================================================================================
+                                WHAT NEEDS UPDATES
+================================================================================
+
+HIGH PRIORITY:
+- Area extraction improvements (often shows 1.0 m²)
+
+MEDIUM PRIORITY:
+- Company information extraction
+- Additional standards support (IES, ASHRAE)
+- Batch processing improvements
+- API endpoints development
+- Performance optimization
+- Error handling improvements
+
+LOW PRIORITY:
+- Enhanced visualization
+- Mobile optimization
+- Custom standards support
+
+================================================================================
+                                INSTALLATION
+================================================================================
+
+REQUIREMENTS:
+- Python 3.8+
+- Java 8+ (for Camelot)
+- Tesseract OCR
+- 4 GB RAM minimum
+
+INSTALLATION:
+1. git clone [repository]
+2. pip install -r requirements.txt
+3. Install Java and Tesseract
+4. streamlit run web_app.py
+
+================================================================================
+                                USAGE
+================================================================================
+
+WEB INTERFACE:
+- Start: streamlit run web_app.py
+- Open: http://localhost:8501
+- Upload PDF and select analysis method
+
+COMMAND LINE:
+- Fast: python main.py analyze-dialux-fast --input report.pdf
+- Enhanced: python main.py analyze-dialux-enhanced --input report.pdf --api-key sk-...
+- Standard: python main.py analyze-dialux --input report.pdf
+
+================================================================================
+                                CURRENT STATUS
+================================================================================
+
+WORKING FEATURES:
+- All three analysis methods functional
+- Web interface operational
+- Standards compliance checking
+- Comprehensive reporting
+- Multiple export formats
+
+KNOWN ISSUES:
+- Area extraction accuracy needs improvement
+- Company name extraction limited without OpenAI
+- Processing time varies significantly
+
+================================================================================
+                                FUTURE ROADMAP
+================================================================================
+
+V1.1.0: PDF reports, additional standards, advanced visualization
+V1.2.0: ML models, custom standards, mobile app, cloud deployment
+Long-term: Multi-language, CAD integration, real-time collaboration
+
+================================================================================
+                                CONTACT
+================================================================================
+
+Developer: Short Circuit Company
+Email: Scc@shortcircuitcompany.com
+Website: www.shortcircuitcompany.com
+GitHub: @shortcircuitcompany
+
+================================================================================
+                                END OF BRIEF
+================================================================================
+
+Report Generated: September 28, 2024
+Word Count: ~500 words
